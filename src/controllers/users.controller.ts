@@ -1,5 +1,6 @@
 import {
   createUserModel,
+  deleteSingleUsersModel,
   getAllUsersModel,
   getSingleUsersModel,
 } from "../models/users.model";
@@ -12,6 +13,11 @@ const getAllUsersController = async () => {
 };
 const getSingleUserController = async (id: number) => {
   const users = await getSingleUsersModel(id);
+  return users;
+};
+
+const deleteSingleUserController = async (id: number) => {
+  const users = await deleteSingleUsersModel(id);
   return users;
 };
 
@@ -36,4 +42,9 @@ const createUserController = async (
   }
 };
 
-export { getAllUsersController, createUserController, getSingleUserController };
+export {
+  getAllUsersController,
+  createUserController,
+  getSingleUserController,
+  deleteSingleUserController,
+};
