@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { IUser } from "../Types/user.types";
 import prisma from "./db.model";
 

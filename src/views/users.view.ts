@@ -4,7 +4,6 @@ import {
   getAllUsersController,
   getSingleUserController,
 } from "../controllers/users.controller";
-import { getSingleUsersModel } from "../models/users.model";
 
 const router = express.Router();
 
