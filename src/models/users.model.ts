@@ -5,41 +5,29 @@ const getAllUsersModel = () => {
   return prisma.user.findMany({});
 };
 
-const getSingleUsersModel = (id: number) => {
+const getSingleUsersModel = async (id: number) => {
   try {
-    const result = prisma.user.findMany({
+    const result = await prisma.user.findMany({
       where: {
         id: id,
       },
     });
-    if (result) {
-      return result;
-    } else {
-      return {
-        error: "no users fount - model layer",
-      };
-    }
+    return result;
   } catch (error) {
     return {
-      error: "error in model layer",
+      error,
     };
   }
 };
 
-const deleteSingleUsersModel = (id: number) => {
+const deleteSingleUsersModel = async (id: number) => {
   try {
-    const result = prisma.user.delete({
+    const result = await prisma.user.delete({
       where: {
         id: id,
       },
     });
-    if (result) {
-      return result;
-    } else {
-      return {
-        error: "no users fount - model layer",
-      };
-    }
+    return result;
   } catch (error) {
     return {
       error,
@@ -55,10 +43,9 @@ const createUserModel = async (user: IUser) => {
         name: user.name,
       },
     });
-
-    return { result: result as IUser };
+    return result;
   } catch (error) {
-    return { error: "Error in model layer" };
+    return error;
   }
 };
 

@@ -4,7 +4,6 @@ import {
   getAllUsersModel,
   getSingleUsersModel,
 } from "../models/users.model";
-import { IResponseCode } from "../Types/index.types";
 import { IUser } from "../Types/user.types";
 
 const getAllUsersController = async () => {
@@ -21,25 +20,9 @@ const deleteSingleUserController = async (id: number) => {
   return users;
 };
 
-const createUserController = async (
-  user: IUser
-): Promise<IResponseCode<IUser>> => {
-  if (user.email && user.name) {
-    const result = await createUserModel(user);
-    if (!result.error) {
-      return {
-        code: 200,
-        message: "Success",
-      };
-    } else {
-      return {
-        code: 400,
-        message: result.error,
-      };
-    }
-  } else {
-    return { code: 400, message: "Error in controller layer" };
-  }
+const createUserController = async (user: IUser) => {
+  const result = await createUserModel(user);
+  return result;
 };
 
 export {

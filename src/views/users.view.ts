@@ -24,7 +24,7 @@ router.get("/:id", async (req, res) => {
       const users = await getSingleUserController(+userId);
       res.status(200).json({ content: users });
     } catch (error) {
-      res.status(500).json({ message: "internal server error " });
+      res.status(500).json({ message: error });
     }
   } else {
     res.status(404).json({ message: "user dosnt exist " });
@@ -34,16 +34,9 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const result = await createUserController(req.body);
-    if (result.code === 200) {
-      res
-        .status(result.code)
-        .json({ content: result.content, message: result.message });
-    } else {
-      console.log(result);
-      res.status(result.code).json({ content: result });
-    }
+    res.status(200).json({ result });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ error });
   }
 });
 
