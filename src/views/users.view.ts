@@ -2,7 +2,9 @@ import express from "express";
 import {
   createUserController,
   getAllUsersController,
+  getSingleUserController,
 } from "../controllers/users.controller";
+import { getSingleUsersModel } from "../models/users.model";
 
 const router = express.Router();
 
@@ -12,6 +14,20 @@ router.get("/", async (req, res) => {
     res.status(200).json({ content: users });
   } catch (error) {
     res.status(500).json({ message: "internal server error " });
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  const userId = req.params.id;
+  if (userId) {
+    try {
+      const users = await getSingleUserController(+userId);
+      res.status(200).json({ content: users });
+    } catch (error) {
+      res.status(500).json({ message: "internal server error " });
+    }
+  } else {
+    res.status(404).json({ message: "user dosnt exist " });
   }
 });
 

@@ -1,9 +1,17 @@
-import { createUserModel, getAllUsersModel } from "../models/users.model";
+import {
+  createUserModel,
+  getAllUsersModel,
+  getSingleUsersModel,
+} from "../models/users.model";
 import { IResponseCode } from "../Types/index.types";
 import { IUser } from "../Types/user.types";
 
 const getAllUsersController = async () => {
   const users = await getAllUsersModel();
+  return users;
+};
+const getSingleUserController = async (id: number) => {
+  const users = await getSingleUsersModel(id);
   return users;
 };
 
@@ -28,4 +36,4 @@ const createUserController = async (
   }
 };
 
-export { getAllUsersController, createUserController };
+export { getAllUsersController, createUserController, getSingleUserController };

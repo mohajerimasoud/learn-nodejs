@@ -6,6 +6,27 @@ const getAllUsersModel = () => {
   return prisma.user.findMany({});
 };
 
+const getSingleUsersModel = (id: number) => {
+  try {
+    const result = prisma.user.findMany({
+      where: {
+        id: id,
+      },
+    });
+    if (result) {
+      return result;
+    } else {
+      return {
+        error: "no users fount - model layer",
+      };
+    }
+  } catch (error) {
+    return {
+      error: "error in model layer",
+    };
+  }
+};
+
 const createUserModel = async (user: IUser) => {
   try {
     const result = await prisma.user.create({
@@ -21,4 +42,4 @@ const createUserModel = async (user: IUser) => {
   }
 };
 
-export { getAllUsersModel, createUserModel };
+export { getAllUsersModel, createUserModel, getSingleUsersModel };
