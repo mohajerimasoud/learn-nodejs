@@ -7,12 +7,12 @@ const getAllUsersModel = () => {
 
 const getSingleUsersModel = async (id: number) => {
   try {
-    const result = await prisma.user.findMany({
-      where: {
-        id: id,
-      },
-    });
-    return result;
+    // const result = await prisma.user.findMany({
+    //   where: {
+    //     id: id,
+    //   },
+    // });
+    return "result";
   } catch (error) {
     return {
       error,
@@ -22,12 +22,12 @@ const getSingleUsersModel = async (id: number) => {
 
 const deleteSingleUsersModel = async (id: number) => {
   try {
-    const result = await prisma.user.delete({
-      where: {
-        id: id,
-      },
-    });
-    return result;
+    // const result = await prisma.user.delete({
+    //   where: {
+    //     id: id,
+    //   },
+    // });
+    return "result";
   } catch (error) {
     return {
       error,
@@ -36,16 +36,24 @@ const deleteSingleUsersModel = async (id: number) => {
 };
 
 const createUserModel = async (user: IUser) => {
+  console.log("=== uer data to create", user);
   try {
     const result = await prisma.user.create({
       data: {
-        email: user.email,
-        name: user.name,
+        name: "Rick",
+        email: "hello@prisma.com",
       },
     });
+    console.log("=== uer create success , result", result);
+
     return result;
   } catch (error) {
-    return error;
+    console.log(
+      "=== error in creating => model layer => error message :",
+      error
+    );
+    // return error;
+    throw error;
   }
 };
 

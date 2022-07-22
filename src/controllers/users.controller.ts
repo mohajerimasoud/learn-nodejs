@@ -21,8 +21,9 @@ const deleteSingleUserController = async (id: number) => {
 };
 
 const createUserController = async (user: IUser) => {
-  const result = await createUserModel(user);
-  return result;
+  // const result = await createUserModel(user);
+  // return result;
+  return await createUserModel(user);
 };
 
 export {

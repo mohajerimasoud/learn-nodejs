@@ -15,4 +15,8 @@ app.use(morgan("tiny"));
 
 routes(app);
 
-app.listen(3005);
+const port = 3005;
+
+app.listen(port, () => {
+  console.log("sesrver is listening on port " + port);
+});
